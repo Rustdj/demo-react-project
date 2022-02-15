@@ -39,7 +39,7 @@
     transition: all .5s;
 }
 
-.buttonRight {
+.buttonFilter {
     
     padding: 10px;
     border-radius: 8px;
@@ -48,12 +48,30 @@
     color: #d15700;
     font-size: 16px;
     font-family: 'Nunito', sans-serif;
-    left: 75%;
-    top: 114px;
+    right: 199px;
+    top: 100px;
+    transition: all .5s;
+}
+.buttonPrev {
+    padding: 10px;
+    border-radius: 8px;
+    position: absolute;
+    border: 1px solid #d15700;
+    color: #d15700;
+    font-size: 16px;
+    font-family: 'Nunito', sans-serif;
+    left: 148px;
+    top: 100px;
     transition: all .5s;
 }
 
-.buttonTop:hover {
+.buttonFilter:hover {
+    background-color: #d15700;
+    color: white;
+    transition: all .5s;
+}
+
+.buttonPrev:hover {
     background-color: #d15700;
     color: white;
     transition: all .5s;
@@ -72,4 +90,8 @@
 }
 h1 {
     color: #fff;
+}
+
+.preloader {
+    
 }

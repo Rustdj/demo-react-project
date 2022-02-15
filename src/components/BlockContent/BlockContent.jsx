@@ -2,14 +2,37 @@ import "./BlockContent.css";
 import { BlockCard } from "./components/BlockCard";
 import { Component } from "react/cjs/react.production.min";
 import axios from "axios";
+import { ButtonFilter } from "./components/ButtonFilter";
+import CircularProgress from '@mui/material/CircularProgress';
 
 export class BlockContent extends Component {
   state = {
-    showBlock: true,
-    showAddForm: false,
-    blockLiked: false,
     blockArr: [],
+    newArray: true,
+    
   };
+
+  searchItem = () => {
+    const newArray = this.state.blockArr.filter((item) => item.liked);
+
+    console.log(newArray);
+
+    this.setState({
+      blockArr: newArray,
+    });
+  };
+
+  searchEmpty = () => {
+    const empArr = [...this.state.blockArr];
+    console.log(empArr.length);
+    empArr.splice(1, 0, 'sdfsfslkfjskdjgs', 'sdfsfslkfjskdjgs', 'sdfsfslkfjskdjgs')
+    
+    this.setState({
+      blockArr: empArr,
+    })
+    
+  };
+
 
   likePost = (pos) => {
     const temp = [...this.state.blockArr];
@@ -20,14 +43,6 @@ export class BlockContent extends Component {
     });
 
     localStorage.setItem("blogPosts", JSON.stringify(temp));
-  };
-
-  toggleBlock = () => {
-    this.setState(({ showBlog }) => {
-      return {
-        showBlog: !showBlog,
-      };
-    });
   };
 
   deletePost = (pos) => {
@@ -42,22 +57,11 @@ export class BlockContent extends Component {
     }
   };
 
-  addNewBlogPost = (blogPost) => {
-    this.setState((state) => {
-      const posts = [...state.blockArr];
-      posts.push(blogPost);
-      localStorage.setItem("blogPosts", JSON.stringify(posts));
-      return {
-        blockArr: posts,
-      };
-    });
-  };
-
   componentDidMount() {
     axios
       .get("https://jsonplaceholder.typicode.com/albums/1/photos")
       .then((response) => {
-          console.log(response)
+        console.log(response);
         this.setState({
           blockArr: response.data,
         });
@@ -65,14 +69,6 @@ export class BlockContent extends Component {
       .catch((err) => {
         console.log(err);
       });
-  }
-
-  searchLiked = () => {
-    this.setState(({blockLiked}) => {
-        return{
-            blockLiked: true
-        }
-    })
   }
 
   render() {
@@ -90,25 +86,18 @@ export class BlockContent extends Component {
       );
     });
 
-    if (this.state.blockArr.length === 0) return <h1>LOADING...</h1>;
-
+    if (this.state.blockArr.length === 0) return <CircularProgress />;
     return (
       <>
-
-        <button className="buttonTop" onClick={this.toggleBlock}>
-          {this.state.showBlock ? "Hide Blog" : "Show Blog"}
-        </button>
-        {this.state.showBlock ? (
-          <>
-            <h1>Simple Blog</h1>
-            <button onClick={this.searchLiked} className="buttonRight">
-              Create new post
-            </button>
-            <div className="posts">
-              <div className="postWrapper">{blogPosts}</div>
-            </div>
-          </>
-        ) : null}
+        <h1>Simple Blog</h1>
+        <ButtonFilter
+          searchItem={this.searchItem}
+          searchEmpty={this.searchEmpty}
+          
+        />
+        <div className="posts">
+          <div className="postWrapper">{blogPosts}</div>
+        </div>
       </>
     );
   }
