@@ -1,15 +1,15 @@
-import React from "react";
+import React from 'react'
 
-export function ButtonFilter({ searchItem, searchEmpty }) {
-  
+export const ButtonFilter = ({searchItem, searchEmpty}) => {
   return (
     <>
-      <button onClick={searchItem} className="buttonFilter">
-        Filter
-      </button>
-      <button onClick={searchEmpty} className="buttonPrev">
-        Reset
-      </button>
+        <button onClick={searchItem}  className="buttonFilter">
+          Filter
+        </button>
+        {/* <button onClick={searchEmpty}  className="buttonPrev">
+          Reset
+        </button> */}
     </>
-  );
+  )
 }
+

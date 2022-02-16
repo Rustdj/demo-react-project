@@ -22,16 +22,16 @@ export class BlockContent extends Component {
     });
   };
 
-  searchEmpty = () => {
-    const empArr = [...this.state.blockArr];
-    console.log(empArr.length);
-    empArr.splice(1, 0, 'sdfsfslkfjskdjgs', 'sdfsfslkfjskdjgs', 'sdfsfslkfjskdjgs')
+  // searchEmpty = () => {
+  //   const empArr = [...this.state.blockArr];
+  //   console.log(empArr.length);
+  //   empArr.splice(1, 0, [])
     
-    this.setState({
-      blockArr: empArr,
-    })
+  //   this.setState({
+  //     blockArr: empArr,
+  //   })
     
-  };
+  // };
 
 
   likePost = (pos) => {
